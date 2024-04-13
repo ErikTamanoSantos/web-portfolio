@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '../images/Anaheim.webp'
+import ArrowLeft from '../components/svg/ArrowLeft.astro';
+import DarkModeButton from '../components/DarkModeButton.astro';
+---
+
+<Layout title="Welcome to Astro." desc="help">
+	<!--
+	<header class="absolute top-2 left-1/2 bg-dark-color">
+		<DarkModeButton size="36"/>
+	</header>
+-->
+	<main class="flex bg-light-color min-h-screen">
+		<section id="logo-container" class="w-1/2 min-h-screen flex items-center justify-center">
+			<Image src={logo} alt="Anaheim Electronics Logo" width={500} transition:name='logo'/>
+		</section>
+		<section id="info" class="w-1/2 p-10">
+			<section class="h-1/2">
+				<h1 class="font-neutralFace text-8xl text-right">Erik Tamaño Santos</h1>
+				<h2 class="font-neutralFace text-4xl text-right">Web Developer</h2>
+			</section>
+			<nav id="menu" class="flex justify-end items-end pb-12 h-1/2">
+				<ul>
+					<li class="font-neutralFace text-4xl text-right my-2 w-[300px]">
+						<a href="/about" class="px-2 flex items-center justify-end gap-2 transition-colors hover:bg-dark-color hover:text-light-color" transition:name="about-link">
+							About
+							<span class="animatedArrow"><ArrowLeft size="36"/></span>
+						</a>
+					</li>
+					<li class="font-neutralFace text-4xl text-right my-2 w-[300px]">
+						<a href="/experience" class="px-2 flex items-center justify-end gap-2 transition-colors hover:bg-dark-color hover:text-light-color" transition:name="experience-link">
+							Experience
+							<span class="animatedArrow"><ArrowLeft size="36"/></span>
+						</a>
+					</li>
+					<li class="font-neutralFace text-4xl text-right my-2 w-[300px]">
+						<a href="/projects" class="px-2 flex items-center justify-end gap-2 transition-colors hover:bg-dark-color hover:text-light-color" transition:name="projects-link">
+							Projects
+							<span class="animatedArrow"><ArrowLeft size="36"/></span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	a .animatedArrow {
+		width: 0;
+		overflow-x: hidden;
+		transition: width 0.3s;
+	}
+	a:hover .animatedArrow {
+		width: 36px;
+	}
+</style>

@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '../images/Anaheim.webp'
+import photo from '../images/foto cv.jpg'
+---
+
+<Layout transition:animate="initial" title="Welcome to Astro." desc="help">
+    <header class="w-screen max-w-full h-16 flex justify-between items-center bg-dark-color">
+        <a href="/">
+            <Image src={logo} alt="Anaheim Electronics Logo" width={80} transition:name='logo'/>
+        </a>
+        <nav id="menu" class="flex gap-4 p-4">
+            <a href="/about" class="font-neutralFace text-light-color text-2xl text-right border-b-2 border-b-light-color" transition:name="about-link">About</a>
+            <a href="/experience" class="font-neutralFace text-light-color text-2xl text-right" transition:name="experience-link">Experience</a>
+            <a href="/projects" class="font-neutralFace text-light-color text-2xl text-right"  transition:name="projects-link">Projects</a>
+        </nav>
+    </header>
+	<main class="bg-light-color min-h-[calc(100vh-4rem)]">
+        <section id="data" class="w-1/2 flex flex-col">
+            <div id=photo-container" class="expanding-img overflow-hidden w-{100} p-8">
+                <Image src={photo} alt="Foto CV" width={400} transition:name='photo'/>
+            </div>
+            <span class="m-8">
+                <h1 id="name" class="font-neutralFace text-dark-color text-4xl text-left typewriter-text"></h1>
+                <h2 id="position" class="font-neutralFace text-dark-color text-2xl text-left typewriter-text" style="animation-delay: 1.75s"></h2>
+                <h4 id="yearOfBirth" class="font-neutralFace text-dark-color text-lg text-left typewriter-text mt-4" style="animation-delay: 2.5s"></h4>
+                <h4 id="company1" class="font-neutralFace text-dark-color text-lg text-left typewriter-text mt-4" style="animation-delay: 2.9s"></h4>
+                <h4 id="company2" class="font-neutralFace text-dark-color text-lg text-left typewriter-text" style="animation-delay: 3.85s"></h4>
+            </span>
+        </section>
+	</main>
+</Layout>
+
+<script is:inline>
+    function init() {
+        let stringsToWrite = {
+            name: "Erik Tamaño Santos",
+            position: "Web Developer",
+            yearOfBirth: "Year of birth: 2003",
+            company1: "Currently working at",
+            company2: "Industry Manufacturing Software"
+        }
+        
+        let elements = Array.from(document.getElementsByClassName('typewriter-text'))
+        renderAnimatedText();
+
+        function renderAnimatedText(elementIndex = 0) {
+            let elementId = elements[elementIndex].id;
+            console.log(elementId)
+            let textArray = stringsToWrite[elementId].split('');
+            elements[elementIndex].innerHTML = '';
+            textArray.forEach((letter, index) => {
+                setTimeout(() => {
+                    elements[elementIndex].innerHTML += letter;
+                    if (index == textArray.length - 1 && elementIndex < elements.length - 1) {
+                        renderAnimatedText(elementIndex + 1)
+                    }
+                }, 35 * index);
+            });
+        }
+    }
+
+    document.addEventListener('astro:page-load', init, { once: true});
+</script>
+
+<style>
+    .expanding-img {
+        animation: expand-img 1s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes expand-img {
+        from {
+            width: 0;
+            height: 0;
+        }
+
+        to {
+            width: 400px;
+            height: 400px;
+        }
+    }
+</style>
+<!--
+<style>
+    .expanding-img {
+        animation: expand-img 1s;
+        animation-fill-mode: forwards;
+    }
+
+    .typewriter-text {
+        animation: typewriter 1s steps(100) 1s 1 normal both;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .typewriter-text > * {
+    }
+
+    @keyframes expand-img {
+        from {
+            width: 0;
+            height: 0;
+        }
+
+        to {
+            width: 400px;
+            height: 400px;
+        }
+    }
+
+    @keyframes typewriter{
+        from{max-width: 0;}
+        to{max-width: 500px;}
+    }
+</style>
+-->

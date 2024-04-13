@@ -1,0 +1,26 @@
+---
+import Sun from "./svg/Sun.astro";
+import Moon from "./svg/Moon.astro";
+
+interface props {
+    size: string;
+    isDarkMode: boolean | false;
+}
+
+const { size, isDarkMode } = Astro.props
+---
+
+<script is:inline>
+    function setDarkMode() {
+        document.documentElement.classList.toggle('dark')
+        Astro.props.isDarkMode = !Astro.props.isDarkMode
+    }
+    Astro.props.isDarkMode = document.documentElement.classList.contains('dark')
+</script>
+
+<button onclick="setDarkMode()">
+    { isDarkMode 
+        ? <Sun size={size} />
+        : <Moon size={size} />
+    }
+</button>

@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logo from '../images/Anaheim.webp'
+import photo from '../images/foto cv.jpg'
+---
+
+<Layout transition:animate="initial" title="Welcome to Astro." desc="help">
+    <header class="w-screen h-16 flex justify-between items-center bg-dark-color">
+        <a href="/">
+            <Image src={logo} alt="Anaheim Electronics Logo" width={80} transition:name='logo'/>
+        </a>
+        <nav id="menu" class="flex gap-4 p-4">
+            <a href="/about" class="font-neutralFace text-light-color text-2xl text-right" transition:name="about-link">About</a>
+            <a href="/experience" class="font-neutralFace text-light-color text-2xl text-right border-b-2 border-b-light-color" transition:name="experience-link">Experience</a>
+            <a href="/projects" class="font-neutralFace text-light-color text-2xl text-right"  transition:name="projects-link">Projects</a>
+        </nav>
+    </header>
+	<main class="bg-light-color min-h-screen">
+        
+	</main>
+</Layout>
+
